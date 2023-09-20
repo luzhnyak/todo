@@ -1,10 +1,14 @@
 import { Todo } from '../Todo/Todo';
 
-export const TodoList = () => {
+export const TodoList = ({ items }) => {
   return (
     <>
       <h1>To Do</h1>
-      <Todo />
+      <ul>
+        {items.map(todo => (
+          <Todo todo={todo} key={todo.id} />
+        ))}
+      </ul>
     </>
   );
 };
