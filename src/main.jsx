@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './components/App.jsx';
+import { App } from './components/App.jsx';
 import TestComponentForRouting from './components/TestComponentForRouting.jsx';
 import { createHashRouter, RouterProvider } from 'react-router-dom';
 import './index.css';
