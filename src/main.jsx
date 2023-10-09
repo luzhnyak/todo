@@ -4,11 +4,17 @@ import { App } from './components/App.jsx';
 import TestComponentForRouting from './components/TestComponentForRouting.jsx';
 import { createHashRouter, RouterProvider } from 'react-router-dom';
 import './index.css';
+import { store } from './redux/store';
+import { Provider } from 'react-redux';
 
 const router = createHashRouter([
   {
     path: '/',
-    element: <App />,
+    element: (
+      <Provider store={store}>
+        <App />
+      </Provider>
+    ),
   },
   {
     path: '/test',
