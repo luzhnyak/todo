@@ -1,4 +1,3 @@
-import React from 'react';
 import { InputGroup, Form, Button } from 'react-bootstrap';
 // Імпортуємо хук
 import { useDispatch } from 'react-redux';
