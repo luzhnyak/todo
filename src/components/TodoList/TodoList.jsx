@@ -6,6 +6,7 @@ import { statusFilters } from '../../redux/constants';
 import { getTasks, getStatusFilter } from '../../redux/selectors';
 
 const getVisibleTasks = (tasks, statusFilter) => {
+  console.log(statusFilter);
   switch (statusFilter) {
     case statusFilters.active:
       return tasks.filter(task => !task.completed);

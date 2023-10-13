@@ -2,7 +2,7 @@ import { InputGroup, Form, Button } from 'react-bootstrap';
 // Імпортуємо хук
 import { useDispatch } from 'react-redux';
 // Імпортуємо генератор екшену
-import { addTask } from '../../redux/actions';
+import { addTask } from '../../redux/operations';
 
 const AddForm = () => {
   // Отримуємо посилання на функцію відправки екшенів
@@ -10,6 +10,7 @@ const AddForm = () => {
 
   const handleSubmit = event => {
     event.preventDefault();
+
     const form = event.target;
     // Викликаємо генератор екшену та передаємо текст завдання для поля payload
     // Відправляємо результат – екшен створення завдання

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { fetchTasks } from '../redux/operations';
 
@@ -8,9 +8,13 @@ import AddForm from './AddForm/AddForm';
 import Filter from './Filter/Filter';
 import { TodoList } from './TodoList/TodoList';
 import { TaskCounter } from './TaskCounter/TaskCounter';
+import { getIsLoading, getTasks } from '../redux/selectors';
+import { CirclesWithBar } from 'react-loader-spinner';
 
 export const App = () => {
   const dispatch = useDispatch();
+  const tasks = useSelector(getTasks);
+  const isLoading = useSelector(getIsLoading);
 
   // Викликаємо операцію
   useEffect(() => {
@@ -26,7 +30,21 @@ export const App = () => {
           <Filter />
         </div>
         <AddForm />
-        <TodoList />
+        {isLoading > 0 && (
+          <CirclesWithBar
+            height="100"
+            width="100"
+            color="#4fa94d"
+            wrapperStyle={{ justifyContent: 'center' }}
+            wrapperClass=""
+            visible={true}
+            outerCircleColor=""
+            innerCircleColor=""
+            barColor=""
+            ariaLabel="circles-with-bar-loading"
+          />
+        )}
+        {!isLoading && tasks.length > 0 && <TodoList />}
       </div>
     </div>
   );
