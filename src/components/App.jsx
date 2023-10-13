@@ -1,36 +1,33 @@
-import { Component } from 'react';
-import { TodoList } from './TodoList/TodoList';
-import { nanoid } from 'nanoid';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+
+import { fetchTasks } from '../redux/operations';
+
 import Header from './Header/Header';
 import AddForm from './AddForm/AddForm';
 import Filter from './Filter/Filter';
+import { TodoList } from './TodoList/TodoList';
 import { TaskCounter } from './TaskCounter/TaskCounter';
 
-export class App extends Component {
-  state = {
-    tasks: [
-      { id: nanoid(), text: 'Learn HTML and CSS', complited: true },
-      { id: nanoid(), text: 'Learn JavaScript', complited: true },
-      { id: nanoid(), text: 'Learn React', complited: true },
-    ],
-    filters: {
-      status: 'all',
-    },
-  };
+export const App = () => {
+  const dispatch = useDispatch();
 
-  render() {
-    return (
-      <div>
-        <Header />
-        <div className="container mt-3">
-          <div className="d-flex justify-content-between">
-            <TaskCounter />
-            <Filter />
-          </div>
-          <AddForm />
-          <TodoList />
+  // Викликаємо операцію
+  useEffect(() => {
+    dispatch(fetchTasks());
+  }, [dispatch]);
+
+  return (
+    <div>
+      <Header />
+      <div className="container mt-3">
+        <div className="d-flex justify-content-between">
+          <TaskCounter />
+          <Filter />
         </div>
+        <AddForm />
+        <TodoList />
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
